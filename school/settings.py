@@ -16,7 +16,11 @@ SECRET_KEY = 'django-insecure-*)6kjpqsuls@)_8n6+3rb376^ii*ftt5lfh9u!&6p3ro_%99ag
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['*']
+
+if 'PORT' in os.environ:
+    PORT = int(os.environ.get('PORT'))
 
 
 # Application definition
@@ -142,5 +146,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 
-if 'PORT' in os.environ:
-    ALLOWED_HOSTS = ['*']
