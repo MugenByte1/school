@@ -1,3 +1,3 @@
 # comment for testing
 
-web: gunicorn school.wsgi:application
+web: gunicorn school.wsgi:application --bind 0.0.0.0:$PORT
