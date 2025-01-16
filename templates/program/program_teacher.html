@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+
+{% block title %}برنامه من{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">برنامه تدریس من</h2>
+    <a href="{% url 'program:program_add' %}" class="btn btn-primary mb-3">افزودن برنامه</a>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>روز</th>
+                <th>نوبت</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for program in programs %}
+            <tr>
+                <td>{{ program.day }}</td>
+                <td>{{ program.period }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

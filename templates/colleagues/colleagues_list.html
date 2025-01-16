@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}همکاران{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">همکاران ما</h2>
+    <div class="row mt-4">
+        {% for colleague in colleagues %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ colleague.photo.url }}" class="card-img-top colleagues-img" alt="{{ colleague.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ colleague.name }}</h5>
+                    <p class="card-text">{{ colleague.position }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

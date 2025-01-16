@@ -1,0 +1,27 @@
+
+.jumbotron {
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    direction: rtl;
+    text-align: right;
+    font-family: 'Arial', sans-serif;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}

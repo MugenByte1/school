@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block title %}درباره ما{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">درباره ما</h2>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <p>{{ about.description }}</p>
+            <p><strong>اهداف:</strong> {{ about.objectives }}</p>
+        </div>
+        <div class="col-md-6">
+            {% if about.image %}
+            <img src="{{ about.image.url }}" class="img-fluid" alt="درباره ما">
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style="text-align: center;">نمرات ثبت شده</h2>
+
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% else %}
+
+    
+    <div style="direction: rtl; text-align: right;">
+        {{ html_table|safe }}
+    </div>
+
+    
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'program:download_excel_as_pdf' file.id %}" 
+           target="_blank" 
+           class="btn btn-success">
+            دانلود  کارنامه
+        </a>
+    </div>
+{% endif %}
+
+
+<div style="text-align: center; margin-top: 20px;">
+    <a href="{% url 'program:student_grades_view' %}" class="btn btn-primary">بازگشت</a>
+</div>
+
+{% endblock %}

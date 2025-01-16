@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style="text-align: center;">کارنامه شما</h2>
+
+<!-- نمایش پیام‌ها -->
+{% if messages %}
+    {% for message in messages %}
+        <p style="color: red;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<!-- نمایش نمرات (تنها در صورت وجود نمره) -->
+{% if grades.exists %}
+    <h3>نمرات شما</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>نام درس</th>
+                <th>نمره</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grade in grades %}
+                <tr>
+                    <td>{{ grade.subject }}</td>
+                    <td>{{ grade.grade }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<!-- نمایش فایل‌های اکسل (تنها در صورت وجود فایل) -->
+{% if excel_files.exists %}
+    <h3>کارنامه</h3>
+    <ul>
+        {% for file in excel_files %}
+            <li>
+                {{ file.student.first_name }} {{ file.student.last_name }}
+                {% comment %} <a href="{{ file.excel_file.url }}" target="_blank">دانلود کارنامه</a> {% endcomment %}
+                |
+                <a href="{% url 'program:view_excel_file' file.id %}">مشاهده کارنامه</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<!-- نمایش پیام خطا فقط در صورتی که نمره و فایل اکسل هر دو خالی باشند -->
+{% if not grades.exists and not excel_files.exists %}
+    <p>هیچ نمره یا کارنامه‌ای ثبت نشده است.</p>
+{% endif %}
+
+{% endblock %}
