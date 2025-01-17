@@ -2,28 +2,27 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import News
 from django.contrib.auth.decorators import login_required
 from .forms import NewsForm
-from django.utils.text import slugify
 
 def news_list(request):
     news_items = News.objects.all().order_by('-created_at')
     return render(request, 'news/news_list.html', {'news_items': news_items})
 
-def news_detail(request, slug):
-    news = get_object_or_404(News, slug=slug)
+def news_detail(request, id):
+    news = get_object_or_404(News, id=id)
     return render(request, 'news/news_detail.html', {'news': news})
+
 
 @login_required
 def news_add(request):
     if request.method == 'POST':
         form = NewsForm(request.POST, request.FILES)
         if form.is_valid():
-            news = form.save(commit=False)
-            news.slug = slugify(news.title, allow_unicode=True)
-            news.save()
+            form.save()
             return redirect('news:news_list')
     else:
         form = NewsForm()
     return render(request, 'news/news_form.html', {'form': form})
+
 
 
 def news_edit(request, pk):

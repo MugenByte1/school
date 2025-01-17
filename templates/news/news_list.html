@@ -7,7 +7,7 @@
     <h2 class="text-center">اخبار</h2>
     <div class="list-group mt-4">
         {% for news in news_items %}
-        <a href="{% url 'news:news_detail' news.slug %}" class="list-group-item list-group-item-action flex-column align-items-start">
+        <a href="{% url 'news:news_detail' news.id %}" class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{ news.title }}</h5>
                 <small>{{ news.created_at|date:"Y-m-d" }}</small>
